@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <File Path="docker-compose.yml" />
+    <Project Path="src/CleanArquitecture.Api/CleanArquitecture.Api.csproj" Id="7a131db1-5d3d-4c32-8b7a-a5e0988b548f" />
+    <Project Path="src/CleanArquitecture.Application/CleanArquitecture.Application.csproj" Id="c3d17b5e-17eb-49dd-81cb-81ffbd49ed0f" />
+    <Project Path="src/CleanArquitecture.Domain/CleanArquitecture.Domain.csproj" Id="ed9bc368-4f3e-4e0e-9fec-320255c0a8e4" />
+    <Project Path="src/CleanArquitecture.Infraestructure/CleanArquitecture.Infraestructure.csproj" Id="dde49a3b-48da-4927-8096-b38787f2d126" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CleanArquitecture.Test/CleanArquitecture.Test.csproj" Id="3d451b59-371b-4efe-ad89-9dc4c42ca0fd" />
+  </Folder>
+</Solution>

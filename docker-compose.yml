@@ -1,0 +1,9 @@
+services:
+  clean-arquitecture-db:
+    image: bitnami/postgresql
+    ports:
+      - 5432:5432 
+    environment:
+      - POSTGRES_DB=clean-arq
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
