@@ -19,19 +19,23 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 
         builder.Property(x => x.FullName)
             .HasMaxLength(50)
-            .HasConversion(x => x.Value, value => FullName.Create(value).Value);
+            .HasConversion(x => x.Value, value => FullName.FromPersistence(value));
+
+        builder.Property(x => x.Password)
+            .HasMaxLength(50)
+            .HasConversion(x => x.Value, value => Password.FromPersistence(value));
 
         builder.Property(x => x.Email)
             .HasMaxLength(50)
-            .HasConversion(x => x.Value, value => Email.Create(value).Value);
+            .HasConversion(x => x.Value, value => Email.FromPersistence(value));
 
         builder.Property(x => x.Cpf)
             .HasMaxLength(11)
-            .HasConversion(x => x.Value, value => Cpf.Create(value).Value);
+            .HasConversion(x => x.Value, value => Cpf.FromPersistence(value));
 
         builder.Property(x => x.BirthDay)
             .HasMaxLength(10)
-            .HasConversion(x => x.Value, value => BirthDay.Create(value).Value);
+            .HasConversion(x => x.Value, value => BirthDay.FromPersistence(value));
 
     }
 }

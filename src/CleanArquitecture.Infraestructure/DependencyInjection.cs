@@ -1,5 +1,7 @@
-﻿using CleanArquitecture.Domain.Abstrations;
+﻿using CleanArquitecture.Application.Authentication;
+using CleanArquitecture.Domain.Abstrations;
 using CleanArquitecture.Domain.Entities.Customer;
+using CleanArquitecture.Infraestructure.Authentication;
 using CleanArquitecture.Infraestructure.Context;
 using CleanArquitecture.Infraestructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +19,10 @@ public static class DependencyInjection
         services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
 
         services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<AppDbContext>());
+
+        services.AddScoped<IJwtProvider, JwtProvider>();
+
+        services.Configure<JwtOptions>(configuration.GetSection(JwtOptions.SectionName));
 
         services.AddScoped<ICustomerRepository, CustomerRepository>();
 

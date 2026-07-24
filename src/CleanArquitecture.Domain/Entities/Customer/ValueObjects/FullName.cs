@@ -21,4 +21,6 @@ public record FullName
 
         return Result.Success(new FullName(fullName));
     }
+
+    public static FullName FromPersistence(string value) => new(value);
 }

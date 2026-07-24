@@ -30,4 +30,6 @@ public record Email
             return Result.Failure<Email>(CustomerErrors.InvalidEmail);
         }
     }
+
+    public static Email FromPersistence(string email) => new(email);
 }

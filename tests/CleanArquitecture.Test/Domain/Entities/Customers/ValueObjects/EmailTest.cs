@@ -21,7 +21,7 @@ public class EmailTest
 
         var result = Email.Create(email);
 
-        Assert.True(result.isFailure);
+        Assert.True(result.IsFailure);
         Assert.Equal(CustomerErrors.InvalidEmail, result.Error);
     }
 
@@ -32,7 +32,7 @@ public class EmailTest
 
         var result = Email.Create(email);
 
-        Assert.True(result.isFailure);
+        Assert.True(result.IsFailure);
         Assert.Equal(CustomerErrors.InvalidEmail, result.Error);
     }
 }

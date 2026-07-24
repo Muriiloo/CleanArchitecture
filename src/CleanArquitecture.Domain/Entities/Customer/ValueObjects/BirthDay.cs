@@ -20,4 +20,6 @@ public record class BirthDay
 
         return Result.Success(new BirthDay(date));
     }
+
+    public static BirthDay FromPersistence(DateOnly birthDay) => new(birthDay);
 }

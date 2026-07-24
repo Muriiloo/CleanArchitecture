@@ -22,7 +22,7 @@ public class FullNameTests
 
         var result = FullName.Create(name);
 
-        Assert.True(result.isFailure);
+        Assert.True(result.IsFailure);
     }
 
     [Fact]
@@ -32,6 +32,6 @@ public class FullNameTests
 
         var result = FullName.Create(name);
 
-        Assert.True(result.isFailure);
+        Assert.True(result.IsFailure);
     }
 }

@@ -18,12 +18,14 @@ public class CreateCustomerHandler : ICommandHandler<CreateCustomerCommand, Guid
     public async Task<Result<Guid>> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
     {
         var fullName = FullName.Create(request.FullName);
+        var password = Password.Create(request.Password);
         var email = Email.Create(request.Email);
         var cpf = Cpf.Create(request.Cpf);
         var birthDay = BirthDay.Create(request.BirthDay);
 
         var customer = Customer.Create(
             fullName.Value,
+            password.Value,
             email.Value,
             cpf.Value,
             birthDay.Value);

@@ -21,7 +21,7 @@ public class BirthDayTest
         var date = new DateOnly(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
         var result = BirthDay.Create(date);
 
-        Assert.True(result.isFailure);
+        Assert.True(result.IsFailure);
         Assert.Equal(CustomerErrors.UnauthorizedAge, result.Error);
     }
 }

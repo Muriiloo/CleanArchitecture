@@ -55,4 +55,6 @@ public record Cpf
         digito = digito + resto.ToString();
         return cpf.EndsWith(digito);
     }
+
+    public static Cpf FromPersistence(string cpf) => new(cpf);
 }

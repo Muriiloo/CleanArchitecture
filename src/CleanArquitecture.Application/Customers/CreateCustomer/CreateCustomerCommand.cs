@@ -2,4 +2,4 @@
 
 namespace CleanArquitecture.Application.Customers.CreateCustomer;
 
-public sealed record CreateCustomerCommand(string FullName, string Email, string Cpf, DateOnly BirthDay) : ICommand<Guid>;
+public sealed record CreateCustomerCommand(string FullName, string Password, string Email, string Cpf, DateOnly BirthDay) : ICommand<Guid>;

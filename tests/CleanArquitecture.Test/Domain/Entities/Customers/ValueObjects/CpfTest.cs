@@ -21,7 +21,7 @@ public class CpfTest
         var cpf = "00000000000000000";
         var result = Cpf.Create(cpf);
 
-        Assert.True(result.isFailure);
+        Assert.True(result.IsFailure);
         Assert.Equal(CustomerErrors.InvalidCpf, result.Error);
     }
 }
