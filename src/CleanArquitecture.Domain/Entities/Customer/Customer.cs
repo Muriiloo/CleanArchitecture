@@ -1,10 +1,11 @@
 ﻿using CleanArquitecture.Domain.Abstrations;
 using CleanArquitecture.Domain.Entities.Customer.Events;
 using CleanArquitecture.Domain.Entities.Customer.ValueObjects;
+using CleanArquitecture.Domain.Entities.Shared.ValueObjects;
 
 namespace CleanArquitecture.Domain.Entities.Customer;
 
-public class Customer : Entity<CustomerId>
+public sealed class Customer : Entity<CustomerId>
 {
     private Customer(CustomerId id, FullName fullName, Password password, Cpf cpf, BirthDay birthDay, Email email) : base(id)
     {

@@ -1,5 +1,5 @@
 ﻿using CleanArquitecture.Domain.Entities.Customer;
-using CleanArquitecture.Domain.Entities.Customer.ValueObjects;
+using CleanArquitecture.Domain.Entities.Shared.ValueObjects;
 using CleanArquitecture.Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
 

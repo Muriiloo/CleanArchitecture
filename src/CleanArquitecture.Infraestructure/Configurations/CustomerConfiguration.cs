@@ -1,5 +1,6 @@
 ﻿using CleanArquitecture.Domain.Entities.Customer;
 using CleanArquitecture.Domain.Entities.Customer.ValueObjects;
+using CleanArquitecture.Domain.Entities.Shared.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

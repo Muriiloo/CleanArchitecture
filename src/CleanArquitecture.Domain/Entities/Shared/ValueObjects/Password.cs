@@ -1,6 +1,7 @@
 ﻿using CleanArquitecture.Domain.Abstrations;
+using CleanArquitecture.Domain.Entities.Customer;
 
-namespace CleanArquitecture.Domain.Entities.Customer.ValueObjects;
+namespace CleanArquitecture.Domain.Entities.Shared.ValueObjects;
 
 public record Password
 {

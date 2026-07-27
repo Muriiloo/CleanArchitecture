@@ -2,4 +2,4 @@
 
 namespace CleanArquitecture.Domain.Entities.Customer.Events;
 
-public record CustomerCreatedDomainEvent(CustomerId customerId) : IDomainEvent;
+public record CustomerCreatedDomainEvent(CustomerId CustomerId) : IDomainEvent;

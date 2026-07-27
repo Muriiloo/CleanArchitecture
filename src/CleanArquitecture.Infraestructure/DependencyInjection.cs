@@ -1,6 +1,7 @@
 ﻿using CleanArquitecture.Application.Authentication;
 using CleanArquitecture.Domain.Abstrations;
 using CleanArquitecture.Domain.Entities.Customer;
+using CleanArquitecture.Domain.Entities.Producer;
 using CleanArquitecture.Infraestructure.Authentication;
 using CleanArquitecture.Infraestructure.Context;
 using CleanArquitecture.Infraestructure.Repositories;
@@ -25,6 +26,7 @@ public static class DependencyInjection
         services.Configure<JwtOptions>(configuration.GetSection(JwtOptions.SectionName));
 
         services.AddScoped<ICustomerRepository, CustomerRepository>();
+        services.AddScoped<IProducerRepository, ProducerRepository>();
 
         return services;
     }

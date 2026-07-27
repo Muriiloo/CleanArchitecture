@@ -2,6 +2,7 @@
 using CleanArquitecture.Domain.Abstrations;
 using CleanArquitecture.Domain.Entities.Customer;
 using CleanArquitecture.Domain.Entities.Customer.ValueObjects;
+using CleanArquitecture.Domain.Entities.Shared.ValueObjects;
 
 namespace CleanArquitecture.Application.Customers.CreateCustomer;
 

@@ -1,5 +1,5 @@
 ﻿using CleanArquitecture.Domain.Entities.Customer;
-using CleanArquitecture.Domain.Entities.Customer.ValueObjects;
+using CleanArquitecture.Domain.Entities.Shared.ValueObjects;
 
 namespace CleanArquitecture.Test.Domain.Entities.Customers.ValueObjects;
 

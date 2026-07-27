@@ -1,4 +1,4 @@
-﻿using CleanArquitecture.Domain.Entities.Customer.ValueObjects;
+﻿using CleanArquitecture.Domain.Entities.Shared.ValueObjects;
 
 namespace CleanArquitecture.Domain.Entities.Customer;
 

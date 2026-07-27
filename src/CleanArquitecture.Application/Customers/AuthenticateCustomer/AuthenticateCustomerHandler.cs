@@ -2,11 +2,8 @@
 using CleanArquitecture.Application.Authentication;
 using CleanArquitecture.Domain.Abstrations;
 using CleanArquitecture.Domain.Entities.Customer;
-using CleanArquitecture.Domain.Entities.Customer.ValueObjects;
+using CleanArquitecture.Domain.Entities.Shared.ValueObjects;
 using CleanArquitecture.Domain.Shared.Errors;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CleanArquitecture.Application.Customers.AuthenticateCustomer;
 
