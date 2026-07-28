@@ -1,6 +1,5 @@
 ﻿using CleanArquitecture.Application.Exceptions;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
 
 namespace CleanArquitecture.Api.Middleware;
 
@@ -21,7 +20,6 @@ public class ExceptionMiddleware
         }
         catch (Exception ex)
         {
-      
             var exceptionDetails = ExceptionHandler(ex);
 
             var problemDetails = new ProblemDetails
@@ -53,10 +51,16 @@ public class ExceptionMiddleware
                 "Validation Error",
                 validationException.Errors),
 
+            InvalidOperationException invalidOperationException => new ExceptionDetails(
+                StatusCodes.Status400BadRequest,
+                "Invalid Operation",
+                "The request could not be processed in the resource's current state.",
+                null),
+
             _ => new ExceptionDetails(
                 StatusCodes.Status500InternalServerError,
-                "InternalServerError",
                 "Internal Server Error",
+                "An unexpected error occurred. Please try again later.",
                 null)
         };
 

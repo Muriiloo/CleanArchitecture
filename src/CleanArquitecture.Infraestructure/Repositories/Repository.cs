@@ -1,10 +1,12 @@
 ﻿using CleanArquitecture.Domain.Abstrations;
+using CleanArquitecture.Domain.Entities.Shared.ValueObjects;
+using CleanArquitecture.Domain.Shared.Repositories;
 using CleanArquitecture.Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArquitecture.Infraestructure.Repositories;
 
-internal abstract class Repository<TEntity, TEntityId> where TEntity : Entity<TEntityId> where TEntityId : class
+internal abstract class Repository<TEntity, TEntityId> : IRepository<TEntity> where TEntity : Entity<TEntityId> where TEntityId : class
 {
     protected readonly AppDbContext _db;
 
@@ -22,4 +24,5 @@ internal abstract class Repository<TEntity, TEntityId> where TEntity : Entity<TE
     {
         _db.Add(entity);
     }
+
 }

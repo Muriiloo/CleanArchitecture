@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArquitecture.Api.Controllers.Customers.CreateCustomer;
 
-[Route("api/[controller]")]
+[Route("api/create-customer")]
 [ApiController]
-public class CustomerController : ControllerBase
+public class CreateCustomerController : ControllerBase
 {
     private readonly ISender _sender;
-    public CustomerController(ISender sender)
+    public CreateCustomerController(ISender sender)
     {
         _sender = sender;
     }
@@ -27,7 +27,7 @@ public class CustomerController : ControllerBase
         var result = await _sender.Send(command, cancellationToken);
 
         if (result.IsFailure)
-            return BadRequest(result.Error);
+            return BadRequest(result.Errors);
 
         return Ok(result.Value);
     }

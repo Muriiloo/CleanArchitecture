@@ -15,7 +15,7 @@ public record Cpf
     {
         var isValidCpf = IsCpf(cpf);
         if (isValidCpf)
-            return Result.Success<Cpf>(new Cpf(cpf));
+            return Result.Success(new Cpf(cpf));
 
         return Result.Failure<Cpf>(CustomerErrors.InvalidCpf);
     }

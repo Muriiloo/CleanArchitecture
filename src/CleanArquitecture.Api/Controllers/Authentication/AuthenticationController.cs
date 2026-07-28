@@ -1,4 +1,4 @@
-﻿using CleanArquitecture.Application.Customers.AuthenticateCustomer;
+﻿using CleanArquitecture.Application.Shared.Authenticate.Command;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +17,7 @@ public class AuthenticationController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Authenticate(AuthenticationRequest request, CancellationToken cancellationToken)
     {
-        var authenticate = new AuthenticateCustomerCommand(
+        var authenticate = new AuthenticateCommand(
             request.Email,
             request.Password);
 

@@ -4,5 +4,6 @@ namespace CleanArquitecture.Domain.Shared.Errors;
 
 public static class GlobalErrors
 {
-    public static Error Unauthorized = new("unauthorized", "Unauthorized.");
+    public static Error Unauthorized = new("401", "Unauthorized.");
+    public static Error EmailAlreadyExists = new("409", "Email already exists.");
 }

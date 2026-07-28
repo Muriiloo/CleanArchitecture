@@ -18,7 +18,7 @@ public class CpfTest
     [Fact]
     public void Create_Should_ReturnFailure_When_CpfIsNotValid()
     {
-        var cpf = "00000000000000000";
+        var cpf = "66548745678";
         var result = Cpf.Create(cpf);
 
         Assert.True(result.IsFailure);
