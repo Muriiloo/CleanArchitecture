@@ -6,4 +6,5 @@ public static class ProducerErrors
 {
     public static Error InvalidCnpj = new("invalid.cnpj", "Invalid CNPJ");
     public static Error InvalidName = new("invalid.name", "Invalid name");
+    public static Error InvalidDescription = new("invalid.description", "Invalid description");
 }

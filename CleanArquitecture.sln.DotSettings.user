@@ -1,0 +1,8 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7b1120ce_002Da2a7_002D4279_002D8170_002Dab4876dc95f8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Create_Should_ReturnSuccess_When_CnpjIsValid" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::3D451B59-371B-4EFE-AD89-9DC4C42CA0FD::net10.0::CleanArquitecture.Test.Domain.Entities.Producer.ValueObjects.CnpjTest.Create_Should_ReturnSuccess_When_CnpjIsValid&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3D451B59-371B-4EFE-AD89-9DC4C42CA0FD::net10.0::CleanArquitecture.Test.Domain.Entities.Producer.ValueObjects.DescriptionTest.Create_Should_ReturnSuccess_When_DescriptionIsValid&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3D451B59-371B-4EFE-AD89-9DC4C42CA0FD::net10.0::CleanArquitecture.Test.Domain.Entities.Producer.ValueObjects.DescriptionTest.Create_Should_ReturnFailure_When_DescriptionIsNotValid&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

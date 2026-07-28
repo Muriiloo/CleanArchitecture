@@ -1,0 +1,13 @@
+/Users/muoliveira/Desktop/Projeots/CleanArchitecture/src/CleanArquitecture.Domain/bin/Debug/net10.0/CleanArquitecture.Domain.deps.json
+/Users/muoliveira/Desktop/Projeots/CleanArchitecture/src/CleanArquitecture.Domain/bin/Debug/net10.0/CleanArquitecture.Domain.dll
+/Users/muoliveira/Desktop/Projeots/CleanArchitecture/src/CleanArquitecture.Domain/bin/Debug/net10.0/CleanArquitecture.Domain.pdb
+/Users/muoliveira/Desktop/Projeots/CleanArchitecture/src/CleanArquitecture.Domain/obj/Debug/net10.0/CleanArquitecture.Domain.csproj.AssemblyReference.cache
+/Users/muoliveira/Desktop/Projeots/CleanArchitecture/src/CleanArquitecture.Domain/obj/Debug/net10.0/CleanArquitecture.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/muoliveira/Desktop/Projeots/CleanArchitecture/src/CleanArquitecture.Domain/obj/Debug/net10.0/CleanArquitecture.Domain.AssemblyInfoInputs.cache
+/Users/muoliveira/Desktop/Projeots/CleanArchitecture/src/CleanArquitecture.Domain/obj/Debug/net10.0/CleanArquitecture.Domain.AssemblyInfo.cs
+/Users/muoliveira/Desktop/Projeots/CleanArchitecture/src/CleanArquitecture.Domain/obj/Debug/net10.0/CleanArquitecture.Domain.csproj.CoreCompileInputs.cache
+/Users/muoliveira/Desktop/Projeots/CleanArchitecture/src/CleanArquitecture.Domain/obj/Debug/net10.0/CleanArquitecture.Domain.sourcelink.json
+/Users/muoliveira/Desktop/Projeots/CleanArchitecture/src/CleanArquitecture.Domain/obj/Debug/net10.0/CleanArquitecture.Domain.dll
+/Users/muoliveira/Desktop/Projeots/CleanArchitecture/src/CleanArquitecture.Domain/obj/Debug/net10.0/refint/CleanArquitecture.Domain.dll
+/Users/muoliveira/Desktop/Projeots/CleanArchitecture/src/CleanArquitecture.Domain/obj/Debug/net10.0/CleanArquitecture.Domain.pdb
+/Users/muoliveira/Desktop/Projeots/CleanArchitecture/src/CleanArquitecture.Domain/obj/Debug/net10.0/ref/CleanArquitecture.Domain.dll
