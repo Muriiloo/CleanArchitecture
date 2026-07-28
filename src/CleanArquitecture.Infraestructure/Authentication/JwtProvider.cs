@@ -17,13 +17,13 @@ internal sealed class JwtProvider : IJwtProvider
         _options = options;
     }
 
-    public string GenerateAccessToken(Customer customer)
+    public string GenerateAccessToken(Guid id, string name, string email)
     {
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.NameIdentifier, customer.Id.ToString()),
-            new Claim(ClaimTypes.Name, customer.FullName.Value),
-            new Claim(ClaimTypes.Email, customer.Email.Value)
+            new Claim(ClaimTypes.NameIdentifier, id.ToString()),
+            new Claim(ClaimTypes.Name, name),
+            new Claim(ClaimTypes.Email, email)
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.Value.Key));

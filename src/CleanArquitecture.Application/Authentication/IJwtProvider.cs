@@ -4,5 +4,5 @@ namespace CleanArquitecture.Application.Authentication;
 
 public interface IJwtProvider
 {
-    string GenerateAccessToken(Customer customer);
+    string GenerateAccessToken(Guid id, string name, string email);
 }

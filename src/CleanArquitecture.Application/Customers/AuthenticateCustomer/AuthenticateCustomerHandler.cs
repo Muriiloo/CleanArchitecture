@@ -36,7 +36,7 @@ public class AuthenticateCustomerHandler : ICommandHandler<AuthenticateCustomerC
         if (customer.Password.Value != password.Value.Value)
             return Result.Failure<string>(GlobalErrors.Unauthorized);
 
-        var token = _jwtProvider.GenerateAccessToken(customer);
+        var token = _jwtProvider.GenerateAccessToken(customer.Id.Value, customer.FullName.Value, customer.Email.Value);
 
         return Result.Success(token);
     }

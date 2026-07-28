@@ -1,5 +1,6 @@
 ﻿using CleanArquitecture.Domain.Abstrations;
 using CleanArquitecture.Domain.Entities.Customer;
+using CleanArquitecture.Domain.Entities.Producer;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArquitecture.Infraestructure.Context;
@@ -12,6 +13,7 @@ public class AppDbContext : DbContext, IUnitOfWork
     }
 
     public DbSet<Customer> Customers { get; init; }
+    public DbSet<Producer> Producers { get; init; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

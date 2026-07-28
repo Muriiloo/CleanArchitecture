@@ -4,7 +4,7 @@ namespace CleanArquitecture.Domain.Entities.Producer.ValueObjects;
 
 public record Description
 {
-    string Value { get; }
+    public string Value { get; }
     
     public Description(string value)
     {
@@ -18,4 +18,6 @@ public record Description
         
         return Result.Success(new Description(value));
     }
+
+    public static Description FromPersistence(string description) => new(description);
 }

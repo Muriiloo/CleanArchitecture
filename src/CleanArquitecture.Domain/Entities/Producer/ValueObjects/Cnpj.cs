@@ -54,4 +54,6 @@ public record Cnpj
         digito = digito + resto.ToString();
         return cnpj.EndsWith(digito);
     }
+
+    public static Cnpj FromPersistence(string cnpj) => new(cnpj);
 }
