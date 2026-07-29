@@ -21,4 +21,6 @@ public record NameEvent
         
         return Result.Success<NameEvent>(new NameEvent(value));
     }
+
+    public static NameEvent FromPersistence(string name) => new NameEvent(name);
 }

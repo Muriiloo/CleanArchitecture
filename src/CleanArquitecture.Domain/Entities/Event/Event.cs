@@ -6,19 +6,19 @@ namespace CleanArquitecture.Domain.Entities.Event;
 
 public sealed class Event : Entity<EventId>
 {
-    private Event(EventId id, NameEvent nameEvent, DescriptionEvent descriptionEvent) : base(id)
+    private Event(EventId id, NameEvent nameEvent, DescriptionEvent descriptionEvent, Address address, PeriodEvent periodEvent) : base(id)
     {
         NameEvent = nameEvent;
         DescriptionEvent = descriptionEvent;
+        Address = address;
+        PeriodEvent = periodEvent;
+
     }
     
     public NameEvent NameEvent { get; private set; }
     public DescriptionEvent DescriptionEvent { get; private set; }
-    public string Location { get; private set; }
-    public string City { get; private set; }
-    public string State { get; private set; }
-    public DateTime InitialDate { get; private set; }
-    public DateTime EndDate { get; private set; }
+    public Address Address { get; private set; }
+    public PeriodEvent PeriodEvent { get; private set; }
     public int LimitAge { get; private set; }
     public string AboutEvent { get; private set; }
 }
