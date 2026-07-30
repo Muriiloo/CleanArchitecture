@@ -5,12 +5,19 @@ using CleanArquitecture.Domain.Shared.Repositories;
 
 namespace CleanArquitecture.Infraestructure.Repositories.InMemoryRepositories;
 
-public sealed class InMemoryCustomerRepository : IRepository<Customer>, ICustomerRepository
+public sealed class InMemoryCustomerRepository : IRepository<Customer, CustomerId>, ICustomerRepository
 {
     private readonly List<Customer> _customers = [];
     public void Add(Customer entity)
     {
         _customers.Add(entity);
+    }
+
+    public Task<Customer?> GetByIdAsync(CustomerId id, CancellationToken cancellationToken)
+    {
+        var customer = _customers.FirstOrDefault(c => c.Id == id);
+
+        return Task.FromResult(customer);
     }
 
     public Task<Customer?> GetCustomerByCpf(Cpf cpf, CancellationToken cancellationToken = default)

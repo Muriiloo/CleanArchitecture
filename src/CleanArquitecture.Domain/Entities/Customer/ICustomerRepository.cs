@@ -4,7 +4,7 @@ using CleanArquitecture.Domain.Shared.Repositories;
 
 namespace CleanArquitecture.Domain.Entities.Customer;
 
-public interface ICustomerRepository : IRepository<Customer>
+public interface ICustomerRepository : IRepository<Customer, CustomerId>
 {
     Task<Customer?> GetCustomerByEmail(Email email, CancellationToken cancellationToken = default);
     Task<Customer?> GetCustomerByCpf(Cpf cpf, CancellationToken cancellationToken = default);

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CleanArquitecture.Infraestructure.Repositories;
 
-internal abstract class Repository<TEntity, TEntityId> : IRepository<TEntity> where TEntity : Entity<TEntityId> where TEntityId : class
+internal abstract class Repository<TEntity, TEntityId> : IRepository<TEntity, TEntityId> where TEntity : Entity<TEntityId> where TEntityId : class
 {
     protected readonly AppDbContext _db;
 
@@ -24,5 +24,4 @@ internal abstract class Repository<TEntity, TEntityId> : IRepository<TEntity> wh
     {
         _db.Add(entity);
     }
-
 }

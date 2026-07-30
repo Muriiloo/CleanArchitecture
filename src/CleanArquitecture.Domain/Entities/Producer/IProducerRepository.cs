@@ -4,7 +4,7 @@ using CleanArquitecture.Domain.Shared.Repositories;
 
 namespace CleanArquitecture.Domain.Entities.Producer;
 
-public interface IProducerRepository : IRepository<Producer>
+public interface IProducerRepository : IRepository<Producer, ProducerId>
 {
     Task<Producer?> GetByEmailAsync(Email email, CancellationToken cancellationToken);
     Task<Producer?> GetByCnpjAsync(Cnpj cnpj, CancellationToken cancellationToken);
