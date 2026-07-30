@@ -16,10 +16,10 @@ public record NameEvent
         if (string.IsNullOrWhiteSpace(value))
             return Result.Failure<NameEvent>(EventErrors.InvalidNameEvent);
 
-        if (value.Length < 6)
+        if (value.Trim().Length < 6)
             return Result.Failure<NameEvent>(EventErrors.InvalidNameEvent);
         
-        return Result.Success<NameEvent>(new NameEvent(value));
+        return Result.Success(new NameEvent(value));
     }
 
     public static NameEvent FromPersistence(string name) => new NameEvent(name);

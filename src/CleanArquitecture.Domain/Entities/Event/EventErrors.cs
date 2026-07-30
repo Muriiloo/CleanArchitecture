@@ -8,4 +8,5 @@ public static class EventErrors
     public static Error InvalidDescriptionEvent => new("400", "The description is invalid");
     public static Error InvalidAddressEvent => new("400", "Invalid location.");
     public static Error InvalidPeriodEvent => new("400", "Invalid date.");
+    public static Error InvalidLimitAge => new("401", "Under the minimum age.");
 }
