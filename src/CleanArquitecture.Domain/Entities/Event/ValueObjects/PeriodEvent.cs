@@ -15,7 +15,7 @@ public record PeriodEvent
 
     public static Result<PeriodEvent> Create(DateTime startDate, DateTime endDate)
     {
-        if (startDate > endDate)
+        if (startDate > endDate || endDate < startDate)
             return Result.Failure<PeriodEvent>(EventErrors.InvalidPeriodEvent);
 
         return Result.Success(new PeriodEvent(startDate, endDate));
