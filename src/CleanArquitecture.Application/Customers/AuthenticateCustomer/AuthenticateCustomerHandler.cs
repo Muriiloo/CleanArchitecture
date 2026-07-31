@@ -32,7 +32,7 @@ public class AuthenticateCustomerHandler : ICommandHandler<AuthenticateCommand, 
         var customer = await _customerRepo.GetCustomerByEmail(email.Value, cancellationToken);
 
         if (customer is null)
-            return Result.Failure<string>(CustomerErrors.NotFound);
+            return Result.Failure<string>(GlobalErrors.Unauthorized);
 
         if (customer.Password.Value != password.Value.Value)
             return Result.Failure<string>(GlobalErrors.Unauthorized);

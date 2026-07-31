@@ -15,7 +15,7 @@ public record class BirthDay
     {
         var age = DateTime.Today.Year - date.Year;
 
-        if (age < 18)
+        if (age < 18 || age > 70)
             return Result.Failure<BirthDay>(CustomerErrors.UnauthorizedAge);
 
         return Result.Success(new BirthDay(date));

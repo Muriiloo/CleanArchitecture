@@ -17,6 +17,10 @@ public record Password
         if (string.IsNullOrWhiteSpace(password))
             return Result.Failure<Password>(CustomerErrors.InvalidPassword);
 
+        if(password.Length < 4)
+            return Result.Failure<Password>(CustomerErrors.InvalidPassword);
+
+
         return Result.Success(new Password(password));
     }
 

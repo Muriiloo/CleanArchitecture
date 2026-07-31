@@ -7,7 +7,7 @@ namespace CleanArquitecture.Infraestructure.Repositories.InMemoryRepositories;
 
 public sealed class InMemoryCustomerRepository : IRepository<Customer, CustomerId>, ICustomerRepository
 {
-    private readonly List<Customer> _customers = [];
+    private readonly List<Customer> _customers = new();
     public void Add(Customer entity)
     {
         _customers.Add(entity);

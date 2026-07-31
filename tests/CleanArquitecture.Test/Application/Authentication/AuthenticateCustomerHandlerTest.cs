@@ -1,0 +1,44 @@
+﻿using CleanArquitecture.Application.Authentication;
+using CleanArquitecture.Application.Customers.AuthenticateCustomer;
+using CleanArquitecture.Application.Shared.Authenticate.Command;
+using CleanArquitecture.Domain.Abstrations;
+using CleanArquitecture.Domain.Entities.Customer;
+using CleanArquitecture.Domain.Entities.Customer.ValueObjects;
+using CleanArquitecture.Domain.Entities.Shared.ValueObjects;
+using CleanArquitecture.Infraestructure.Repositories.InMemoryRepositories;
+
+namespace CleanArquitecture.Test.Application.Authentication;
+
+public class AuthenticateCustomerHandlerTest
+{
+    private readonly InMemoryCustomerRepository _customerRepo;
+    private readonly AuthenticateCustomerHandler _handler;
+    private readonly IJwtProvider _jwtProvider;
+    private readonly CancellationToken _cancellationToken;
+
+    public AuthenticateCustomerHandlerTest()
+    {
+        _customerRepo = new InMemoryCustomerRepository();
+        _handler = new AuthenticateCustomerHandler(_customerRepo, _jwtProvider);
+    }
+
+    [Fact]
+    public async Task Handle_OnSuccess_ShouldReturnToken()
+    {
+        var fullName = FullName.Create("Murilo");
+        var password = Password.Create("1234567");
+        var email = Email.Create("murilo@gmail.com");
+        var cpf = Cpf.Create("53140598009");
+        var birthDay = BirthDay.Create(new DateOnly(2005,3,11));
+
+        var customer = Customer.Create(fullName.Value, password.Value, email.Value, cpf.Value, birthDay.Value);
+        _customerRepo.Add(customer.Value);
+
+
+        var command = new AuthenticateCommand("murilo@gmail.com", "1234567");
+        var result = await _handler.Handle(command, _cancellationToken);
+
+        Assert.NotEmpty(result.Value);
+        Assert.IsType<string>(result.Value);
+    }
+}
