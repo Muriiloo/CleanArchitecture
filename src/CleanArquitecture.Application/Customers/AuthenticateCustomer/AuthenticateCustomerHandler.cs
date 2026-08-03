@@ -13,7 +13,6 @@ public class AuthenticateCustomerHandler : ICommandHandler<AuthenticateCommand, 
 {
     private readonly ICustomerRepository _customerRepo;
     private readonly IJwtProvider _jwtProvider;
-    private List<Error> _errors = new();
 
     public AuthenticateCustomerHandler(ICustomerRepository customerRepo, IJwtProvider jwtProvider)
     {
