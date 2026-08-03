@@ -1,7 +1,6 @@
 ﻿using CleanArquitecture.Application.Abstrations.Messaging;
 using CleanArquitecture.Application.Authentication;
 using CleanArquitecture.Application.Exceptions;
-using CleanArquitecture.Application.Shared.Authenticate.Command;
 using CleanArquitecture.Domain.Abstrations;
 using CleanArquitecture.Domain.Entities.Customer;
 using CleanArquitecture.Domain.Entities.Shared.ValueObjects;
@@ -9,7 +8,7 @@ using CleanArquitecture.Domain.Shared.Errors;
 
 namespace CleanArquitecture.Application.Customers.AuthenticateCustomer;
 
-public class AuthenticateCustomerHandler : ICommandHandler<AuthenticateCommand, string>
+public class AuthenticateCustomerHandler : ICommandHandler<AuthenticateCustomerCommand, string>
 {
     private readonly ICustomerRepository _customerRepo;
     private readonly IJwtProvider _jwtProvider;
@@ -19,7 +18,7 @@ public class AuthenticateCustomerHandler : ICommandHandler<AuthenticateCommand, 
         _customerRepo = customerRepo;
         _jwtProvider = jwtProvider;
     }
-    public async Task<Result<string>> Handle(AuthenticateCommand request, CancellationToken cancellationToken)
+    public async Task<Result<string>> Handle(AuthenticateCustomerCommand request, CancellationToken cancellationToken)
     {
         var email = Email.Create(request.Email);
         var password = Password.Create(request.Password);

@@ -1,13 +1,13 @@
 ﻿using CleanArquitecture.Application.Authentication;
 using CleanArquitecture.Application.Customers.AuthenticateCustomer;
-using CleanArquitecture.Application.Shared.Authenticate.Command;
 using CleanArquitecture.Domain.Entities.Customer;
 using CleanArquitecture.Domain.Entities.Customer.ValueObjects;
 using CleanArquitecture.Domain.Entities.Shared.ValueObjects;
 using CleanArquitecture.Domain.Shared.Errors;
 using CleanArquitecture.Infraestructure.Repositories.InMemoryRepositories;
+using CleanArquitecture.Test.Application.Authentication;
 
-namespace CleanArquitecture.Test.Application.Authentication;
+namespace CleanArquitecture.Test.Application.Customers;
 
 public class AuthenticateCustomerHandlerTest
 {
@@ -35,7 +35,7 @@ public class AuthenticateCustomerHandlerTest
         var customer = Customer.Create(fullName.Value, password.Value, email.Value, cpf.Value, birthDay.Value);
         _customerRepo.Add(customer.Value);
 
-        var command = new AuthenticateCommand("murilo@gmail.com", "1234567");
+        var command = new AuthenticateCustomerCommand("murilo@gmail.com", "1234567");
         var result = await _handler.Handle(command, _cancellationToken);
 
         Assert.NotEmpty(result.Value);
@@ -48,7 +48,7 @@ public class AuthenticateCustomerHandlerTest
     [InlineData("invalid-email", "1234567")] // senha invalida
     public async Task Handle_WhenAuthenticationDataIsInvalid_ShouldReturnFailure(string email, string password)
     {
-        var command = new AuthenticateCommand(email, password);
+        var command = new AuthenticateCustomerCommand(email, password);
         var result = await _handler.Handle(command, _cancellationToken);
 
         Assert.NotEmpty(result.Errors);
@@ -58,7 +58,7 @@ public class AuthenticateCustomerHandlerTest
     [Fact]
     public async Task Handle_WhenCustomerNotFoundByEmail_ShouldReturnFailure()
     {
-        var command = new AuthenticateCommand("murilo@gmail.com", "1234567");
+        var command = new AuthenticateCustomerCommand("murilo@gmail.com", "1234567");
         var result = await _handler.Handle(command, _cancellationToken);
 
         Assert.True(result.IsFailure);
@@ -77,7 +77,7 @@ public class AuthenticateCustomerHandlerTest
         var customer = Customer.Create(fullName.Value, password.Value, email.Value, cpf.Value, birthDay.Value);
         _customerRepo.Add(customer.Value);
 
-        var command = new AuthenticateCommand("murilo@gmail.com", "12345678");
+        var command = new AuthenticateCustomerCommand("murilo@gmail.com", "12345678");
         var result = await _handler.Handle(command, _cancellationToken);
 
         Assert.True(result.IsFailure);

@@ -1,4 +1,5 @@
-﻿using CleanArquitecture.Application.Shared.Authenticate.Command;
+﻿using CleanArquitecture.Application.Customers.AuthenticateCustomer;
+using CleanArquitecture.Application.Producer.AuthenticateProducer;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,15 +15,27 @@ public class AuthenticationController : ControllerBase
         _sender = sender;
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Authenticate(AuthenticationRequest request, CancellationToken cancellationToken)
+    [HttpPost("customer")]
+    public async Task<IActionResult> AuthenticateCustomer(AuthenticationCustomerRequest request, CancellationToken cancellationToken)
     {
-        var authenticate = new AuthenticateCommand(
+        var authenticate = new AuthenticateCustomerCommand(
             request.Email,
             request.Password);
 
         var result = await _sender.Send(authenticate, cancellationToken);
 
         return result.IsSuccess ? Ok(result.Value) : Unauthorized(result.Error); 
+    }
+
+    [HttpPost("producer")]
+    public async Task<IActionResult> AuthenticateProducer(AuthenticationProducerRequest request, CancellationToken cancellationToken)
+    {
+        var authenticate = new AuthenticateProducerCommand(
+            request.Email,
+            request.Password);
+
+        var result = await _sender.Send(authenticate, cancellationToken);
+
+        return result.IsSuccess ? Ok(result.Value) : Unauthorized(result.Error);
     }
 }
