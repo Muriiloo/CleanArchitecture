@@ -1,5 +1,6 @@
 ﻿using CleanArquitecture.Application.Abstrations.Messaging;
 using CleanArquitecture.Application.Authentication;
+using CleanArquitecture.Application.Exceptions;
 using CleanArquitecture.Application.Shared.Authenticate.Command;
 using CleanArquitecture.Domain.Abstrations;
 using CleanArquitecture.Domain.Entities.Customer;
@@ -12,6 +13,7 @@ public class AuthenticateCustomerHandler : ICommandHandler<AuthenticateCommand, 
 {
     private readonly ICustomerRepository _customerRepo;
     private readonly IJwtProvider _jwtProvider;
+    private List<Error> _errors = new();
 
     public AuthenticateCustomerHandler(ICustomerRepository customerRepo, IJwtProvider jwtProvider)
     {
@@ -23,11 +25,10 @@ public class AuthenticateCustomerHandler : ICommandHandler<AuthenticateCommand, 
         var email = Email.Create(request.Email);
         var password = Password.Create(request.Password);
 
-        if (email.IsFailure)
-            return Result.Failure<string>(email.Error);
+        var error = ValidationErrorMapper.GetValidationErrors(email, password);
 
-        if (password.IsFailure)
-            return Result.Failure<string>(password.Error);
+        if(error.Any())
+            return Result.Failure<string>(GlobalErrors.Unauthorized);
 
         var customer = await _customerRepo.GetCustomerByEmail(email.Value, cancellationToken);
 

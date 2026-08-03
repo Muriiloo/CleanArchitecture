@@ -4,6 +4,7 @@ using CleanArquitecture.Application.Shared.Authenticate.Command;
 using CleanArquitecture.Domain.Entities.Customer;
 using CleanArquitecture.Domain.Entities.Customer.ValueObjects;
 using CleanArquitecture.Domain.Entities.Shared.ValueObjects;
+using CleanArquitecture.Domain.Shared.Errors;
 using CleanArquitecture.Infraestructure.Repositories.InMemoryRepositories;
 
 namespace CleanArquitecture.Test.Application.Authentication;
@@ -34,11 +35,53 @@ public class AuthenticateCustomerHandlerTest
         var customer = Customer.Create(fullName.Value, password.Value, email.Value, cpf.Value, birthDay.Value);
         _customerRepo.Add(customer.Value);
 
-
         var command = new AuthenticateCommand("murilo@gmail.com", "1234567");
         var result = await _handler.Handle(command, _cancellationToken);
 
         Assert.NotEmpty(result.Value);
         Assert.IsType<string>(result.Value);
     }
+
+    [Theory]
+    [InlineData("invalid-email", "")] // os dois invalidos
+    [InlineData("murilo@gmail.com", "")] // senha invalida
+    [InlineData("invalid-email", "1234567")] // senha invalida
+    public async Task Handle_WhenAuthenticationDataIsInvalid_ShouldReturnFailure(string email, string password)
+    {
+        var command = new AuthenticateCommand(email, password);
+        var result = await _handler.Handle(command, _cancellationToken);
+
+        Assert.NotEmpty(result.Errors);
+        Assert.Equal(GlobalErrors.Unauthorized, result.Error);
+    }
+
+    [Fact]
+    public async Task Handle_WhenCustomerNotFoundByEmail_ShouldReturnFailure()
+    {
+        var command = new AuthenticateCommand("murilo@gmail.com", "1234567");
+        var result = await _handler.Handle(command, _cancellationToken);
+
+        Assert.True(result.IsFailure);
+        Assert.Equal(GlobalErrors.Unauthorized, result.Error);
+    }
+
+    [Fact]
+    public async Task Handle_WhenPasswordIsIncorrect_ShouldReturnFailure()
+    {
+        var fullName = FullName.Create("Murilo");
+        var password = Password.Create("1234567");
+        var email = Email.Create("murilo@gmail.com");
+        var cpf = Cpf.Create("53140598009");
+        var birthDay = BirthDay.Create(new DateOnly(2005, 3, 11));
+
+        var customer = Customer.Create(fullName.Value, password.Value, email.Value, cpf.Value, birthDay.Value);
+        _customerRepo.Add(customer.Value);
+
+        var command = new AuthenticateCommand("murilo@gmail.com", "12345678");
+        var result = await _handler.Handle(command, _cancellationToken);
+
+        Assert.True(result.IsFailure);
+        Assert.Equal(GlobalErrors.Unauthorized, result.Error);
+    }
+
 }
