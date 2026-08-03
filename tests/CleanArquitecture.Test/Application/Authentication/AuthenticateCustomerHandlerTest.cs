@@ -1,7 +1,6 @@
 ﻿using CleanArquitecture.Application.Authentication;
 using CleanArquitecture.Application.Customers.AuthenticateCustomer;
 using CleanArquitecture.Application.Shared.Authenticate.Command;
-using CleanArquitecture.Domain.Abstrations;
 using CleanArquitecture.Domain.Entities.Customer;
 using CleanArquitecture.Domain.Entities.Customer.ValueObjects;
 using CleanArquitecture.Domain.Entities.Shared.ValueObjects;
@@ -19,6 +18,7 @@ public class AuthenticateCustomerHandlerTest
     public AuthenticateCustomerHandlerTest()
     {
         _customerRepo = new InMemoryCustomerRepository();
+        _jwtProvider = new FakeJwtProvider();
         _handler = new AuthenticateCustomerHandler(_customerRepo, _jwtProvider);
     }
 
