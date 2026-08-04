@@ -1,10 +1,12 @@
 ﻿using CleanArquitecture.Application.Authentication;
 using CleanArquitecture.Domain.Abstrations;
 using CleanArquitecture.Domain.Entities.Customer;
+using CleanArquitecture.Domain.Entities.Event;
 using CleanArquitecture.Domain.Entities.Producer;
 using CleanArquitecture.Infraestructure.Authentication;
 using CleanArquitecture.Infraestructure.Context;
 using CleanArquitecture.Infraestructure.Repositories;
+using CleanArquitecture.Infraestructure.Time;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,11 +24,13 @@ public static class DependencyInjection
         services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<AppDbContext>());
 
         services.AddScoped<IJwtProvider, JwtProvider>();
+        services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
         services.Configure<JwtOptions>(configuration.GetSection(JwtOptions.SectionName));
 
         services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<IProducerRepository, ProducerRepository>();
+        services.AddScoped<IEventRepository, EventRepository>();
 
         return services;
     }

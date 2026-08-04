@@ -1,40 +1,49 @@
-﻿using CleanArquitecture.Domain.Entities.Event;
+﻿using CleanArquitecture.Domain.Abstrations;
+using CleanArquitecture.Domain.Entities.Event;
 using CleanArquitecture.Domain.Entities.Event.ValueObjects;
+using CleanArquitecture.Test.Domain.Time;
 
 namespace CleanArquitecture.Test.Domain.Entities.Event.ValueObjects;
 
 public class PeriodEventTest
 {
-    [Fact]
-    public static void Create_WhenPeriodIsValid_ShouldReturnSuccess()
-    {
-        var startDate = new DateTime(2027,03,11,19,0,0);
-        var endDate = new DateTime(2027, 03, 12, 3, 0, 0);
+    private readonly IDateTimeProvider _time;
 
-        var result = PeriodEvent.Create(startDate, endDate);
+    public PeriodEventTest()
+    {
+        _time = new FixedDateTimeProvider();
+    }
+
+    [Fact]
+    public void Create_WhenPeriodIsValid_ShouldReturnSuccess()
+    {
+        var startDate = _time.UtcNow.AddDays(7);
+        var endDate = startDate.AddHours(6);
+
+        var result = PeriodEvent.Create(startDate, endDate, _time);
 
         Assert.True(result.IsSuccess);
     }
 
     [Fact]
-    public static void Create_WhenStartDateIsAfterEndDate_ShouldReturnFailure()
+    public void Create_WhenStartDateIsInThePast_ShouldReturnFailure()
     {
-        var startDate = new DateTime(2027, 03, 13, 19, 0, 0);
-        var endDate = new DateTime(2027, 03, 12, 3, 0, 0);
+        var startDate = _time.UtcNow.AddDays(-1);
+        var endDate = _time.UtcNow.AddDays(2);
 
-        var result = PeriodEvent.Create(startDate, endDate);
+        var result = PeriodEvent.Create(startDate, endDate, _time);
 
         Assert.True(result.IsFailure);
         Assert.Equal(EventErrors.InvalidPeriodEvent, result.Error);
     }
 
     [Fact]
-    public static void Create_WhenEndDateIsBeforeStartDate_ShouldReturnFailure()
+    public void Create_WhenStartDateIsAfterEndDate_ShouldReturnFailure()
     {
-        var startDate = new DateTime(2027, 03, 11, 19, 0, 0);
-        var endDate = new DateTime(2027, 03, 10, 3, 0, 0);
+        var startDate = _time.UtcNow.AddDays(7);
+        var endDate = startDate.AddHours(-6);
 
-        var result = PeriodEvent.Create(startDate, endDate);
+        var result = PeriodEvent.Create(startDate, endDate, _time);
 
         Assert.True(result.IsFailure);
         Assert.Equal(EventErrors.InvalidPeriodEvent, result.Error);

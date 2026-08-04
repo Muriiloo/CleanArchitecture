@@ -13,9 +13,12 @@ public record PeriodEvent
         EndDate = endDate;
     }
 
-    public static Result<PeriodEvent> Create(DateTime startDate, DateTime endDate)
+    public static Result<PeriodEvent> Create(DateTime startDate, DateTime endDate, IDateTimeProvider time)
     {
-        if (startDate > endDate || endDate < startDate)
+        if (startDate < time.UtcNow)
+            return Result.Failure<PeriodEvent>(EventErrors.InvalidPeriodEvent);
+
+        if (startDate > endDate)
             return Result.Failure<PeriodEvent>(EventErrors.InvalidPeriodEvent);
 
         return Result.Success(new PeriodEvent(startDate, endDate));
