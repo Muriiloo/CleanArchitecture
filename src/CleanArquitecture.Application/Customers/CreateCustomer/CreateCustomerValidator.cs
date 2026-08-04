@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿using CleanArquitecture.Domain.Entities.Customer.ValueObjects;
+using CleanArquitecture.Domain.Entities.Shared.ValueObjects;
+using FluentValidation;
 
 namespace CleanArquitecture.Application.Customers.CreateCustomer;
 
@@ -6,9 +8,24 @@ public class CreateCustomerValidator : AbstractValidator<CreateCustomerCommand>
 {
     public CreateCustomerValidator()
     {
-        RuleFor(x => x.FullName).NotEmpty().MinimumLength(3).MaximumLength(50);
-        RuleFor(x => x.Email).EmailAddress().NotEmpty();
-        RuleFor(x => x.Cpf).NotEmpty().MaximumLength(11);
-        RuleFor(x => x.BirthDay).Must(date => date >= new DateOnly(1900, 1, 1) && date <= DateOnly.FromDateTime(DateTime.Today)).WithMessage("A data de nascimento precisar ser maior que 1900 e menor que o ano atual.");
+        RuleFor(x => x.FullName)
+            .Must(fullName => FullName.Create(fullName).IsSuccess)
+            .WithMessage("Name is not valid.");
+
+        RuleFor(x => x.Password)
+            .Must(password => Password.Create(password).IsSuccess)
+            .WithMessage("Password is not valid.");
+
+        RuleFor(x => x.Email)
+            .Must(email => Email.Create(email).IsSuccess)
+            .WithMessage("Email is not valid.");
+
+        RuleFor(x => x.Cpf)
+            .Must(cpf => Cpf.Create(cpf).IsSuccess)
+            .WithMessage("Cpf is not valid.");
+
+        RuleFor(x => x.BirthDay)
+            .Must(birthDay => BirthDay.Create(birthDay).IsSuccess)
+            .WithMessage("Unauthorized age.");
     }
 }

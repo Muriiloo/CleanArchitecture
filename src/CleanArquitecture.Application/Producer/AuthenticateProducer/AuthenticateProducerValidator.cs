@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using CleanArquitecture.Domain.Entities.Shared.ValueObjects;
+using FluentValidation;
 
 namespace CleanArquitecture.Application.Producer.AuthenticateProducer;
 
@@ -6,7 +7,12 @@ public class AuthenticateProducerValidator : AbstractValidator<AuthenticateProdu
 {
     public AuthenticateProducerValidator()
     {
-        RuleFor(p => p.Email).NotEmpty().MinimumLength(3);
-        RuleFor(p => p.Password).NotEmpty().MinimumLength(3);
+        RuleFor(x => x.Email)
+            .Must(email => Email.Create(email).IsSuccess)
+            .WithMessage("Email is not valid.");
+
+        RuleFor(x => x.Password)
+            .Must(password => Password.Create(password).IsSuccess)
+            .WithMessage("Password is not valid.");
     }
 }
